@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: body}">
+<body>
+<section>
+    <form th:action="${cricketer.id} != null ? @{'/cricketers/' + ${cricketer.id}} : @{/cricketers}" th:object="${cricketer}" method="post">
+        <label>Name <input type="text" th:field="*{name}" /></label>
+        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+
+        <label>Country <input type="text" th:field="*{country}" /></label>
+        <div th:if="${#fields.hasErrors('country')}" th:errors="*{country}"></div>
+
+        <label>Role
+            <select th:field="*{role}">
+                <option th:each="r : ${roles}" th:value="${r}" th:text="${r}"></option>
+            </select>
+        </label>
+        <div th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></div>
+
+        <label>Matches <input type="number" min="0" th:field="*{matches}" /></label>
+        <label>Runs <input type="number" min="0" th:field="*{runs}" /></label>
+        <label>Wickets <input type="number" min="0" th:field="*{wickets}" /></label>
+        <label>Batting Avg <input type="number" step="0.01" min="0" th:field="*{battingAverage}" /></label>
+        <label>Bowling Avg <input type="number" step="0.01" min="0" th:field="*{bowlingAverage}" /></label>
+        <label>Strike Rate <input type="number" step="0.01" min="0" th:field="*{strikeRate}" /></label>
+
+        <button type="submit">Save</button>
+        <a th:href="@{/cricketers}">Cancel</a>
+    </form>
+</section>
+</body>
+</html>

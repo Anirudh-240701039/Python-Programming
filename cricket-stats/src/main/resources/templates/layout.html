@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Cricket Stats</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+<header>
+    <h1><a th:href="@{/cricketers}">Cricketer Statistics</a></h1>
+    <nav>
+        <a th:href="@{/cricketers}">Home</a>
+        <a th:href="@{/cricketers/new}">Add Cricketer</a>
+        <a th:href="@{/h2-console}">H2 Console</a>
+    </nav>
+</header>
+<main>
+    <div th:replace="~{::body}"></div>
+</main>
+</body>
+</html>
