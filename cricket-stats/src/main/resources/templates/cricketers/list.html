@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{layout :: body}">
+<body>
+<section>
+    <form method="get" th:action="@{/cricketers}">
+        <input type="text" name="q" placeholder="Search by name" th:value="${q}" />
+        <button type="submit">Search</button>
+        <a th:href="@{/cricketers}">Clear</a>
+    </form>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Country</th>
+            <th>Role</th>
+            <th>Matches</th>
+            <th>Runs</th>
+            <th>Wickets</th>
+            <th>Bat Avg</th>
+            <th>Bowl Avg</th>
+            <th>SR</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="c : ${cricketers}">
+            <td th:text="${c.name}"></td>
+            <td th:text="${c.country}"></td>
+            <td th:text="${c.role}"></td>
+            <td th:text="${c.matches}"></td>
+            <td th:text="${c.runs}"></td>
+            <td th:text="${c.wickets}"></td>
+            <td th:text="${c.battingAverage}"></td>
+            <td th:text="${c.bowlingAverage}"></td>
+            <td th:text="${c.strikeRate}"></td>
+            <td>
+                <a th:href="@{'/cricketers/' + ${c.id} + '/edit'}">Edit</a>
+                <form th:action="@{'/cricketers/' + ${c.id} + '/delete'}" method="post" style="display:inline">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+</body>
+</html>
